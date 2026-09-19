@@ -1,0 +1,2746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Cheyyandi Aaha Anandi</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo" onclick="showPage('home')">
+        <span>🍔</span>
+        <div>
+            <strong>ORDER CHEYYANDI</strong>
+            <small>AAHA ANANDI 😋</small>
+        </div>
+    </div>
+
+    <nav>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('restaurants')">Restaurants</a>
+        <a onclick="showPage('menu')">Menu</a>
+        <a onclick="showPage('offers')">Offers</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('contact')">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+
+        <button class="login-btn" id="loginButton" onclick="openLogin()">
+            <i class="fa-solid fa-user"></i> Login
+        </button>
+
+        <button class="user-btn hidden" id="userButton" onclick="toggleUserMenu()">
+            <i class="fa-solid fa-circle-user"></i>
+            <span id="userNameText">User</span>
+        </button>
+
+        <button class="cart-btn" onclick="openCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Cart
+            <span id="cartCount">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="welcome-badge">
+                🔥 Fast • Fresh • Delicious
+            </div>
+
+            <h1>
+                ORDER CHEYYANDI<br>
+                <span>AAHA ANANDI 😋</span>
+            </h1>
+
+            <p>
+                Your favourite food is just one click away!
+                Order delicious meals from your favourite restaurants.
+            </p>
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="homeSearch"
+                    placeholder="Search for biryani, pizza, burger..."
+                    oninput="homeSearchFood()">
+
+                <button onclick="goToMenuSearch()">
+                    Search
+                </button>
+
+            </div>
+
+            <div class="location-box">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <input
+                    type="text"
+                    id="locationInput"
+                    placeholder="Enter delivery location">
+
+                <button onclick="detectLocation()">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    Detect
+                </button>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="showPage('menu')">
+                    Order Now <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <button class="secondary-btn" onclick="showPage('restaurants')">
+                    Explore Restaurants
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <div class="floating-card card-one">
+                ⭐ 4.9 Rating
+            </div>
+
+            <div class="floating-card card-two">
+                🚴 30 Min Delivery
+            </div>
+
+            <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85"
+                alt="Delicious Food">
+
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        <span>EXPLORE</span>
+        <h2>What are you craving today?</h2>
+        <p>Choose your favourite category</p>
+    </div>
+
+    <div class="category-grid">
+
+        <div class="category-card" onclick="selectCategory('Biryani')">
+            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=500&q=80">
+            <h3>🍚 Biryani</h3>
+            <p>Spicy & delicious</p>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Pizza')">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80">
+            <h3>🍕 Pizza</h3>
+            <p>Cheesy & hot</p>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Burgers')">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80">
+            <h3>🍔 Burgers</h3>
+            <p>Juicy & tasty</p>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Chinese')">
+            <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=80">
+            <h3>🍜 Chinese</h3>
+            <p>Hot & delicious</p>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Desserts')">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=500&q=80">
+            <h3>🍰 Desserts</h3>
+            <p>Sweet moments</p>
+        </div>
+
+        <div class="category-card" onclick="selectCategory('Drinks')">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=500&q=80">
+            <h3>🥤 Drinks</h3>
+            <p>Cool & refreshing</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= RESTAURANTS ================= -->
+
+<section id="restaurants" class="page">
+
+    <div class="page-header">
+        <span>TOP PLACES</span>
+        <h1>Popular Restaurants</h1>
+        <p>Discover tasty food near you</p>
+    </div>
+
+    <div id="restaurantGrid" class="restaurant-grid"></div>
+
+</section>
+
+
+<!-- ================= MENU ================= -->
+
+<section id="menu" class="page">
+
+    <div class="page-header">
+        <span>OUR MENU</span>
+        <h1>Choose Your Favourite Food</h1>
+        <p>Fresh food • Great taste • Fast delivery</p>
+    </div>
+
+    <div class="menu-tools">
+
+        <div class="menu-search">
+            <i class="fa-solid fa-search"></i>
+            <input
+                id="menuSearch"
+                type="text"
+                placeholder="Search food..."
+                oninput="searchMenu()">
+        </div>
+
+        <div class="category-buttons">
+
+            <button class="filter-btn active" onclick="filterMenu('All', this)">
+                All
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Biryani', this)">
+                Biryani
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Pizza', this)">
+                Pizza
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Burgers', this)">
+                Burgers
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Chinese', this)">
+                Chinese
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Desserts', this)">
+                Desserts
+            </button>
+
+            <button class="filter-btn" onclick="filterMenu('Drinks', this)">
+                Drinks
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="menuGrid" class="food-grid"></div>
+
+</section>
+
+
+<!-- ================= OFFERS ================= -->
+
+<section id="offers" class="page">
+
+    <div class="page-header">
+        <span>SPECIAL DEALS</span>
+        <h1>Today's Offers 🎁</h1>
+        <p>Save more while enjoying your favourite food</p>
+    </div>
+
+    <div class="offer-grid">
+
+        <div class="offer-card orange">
+            <div class="offer-icon">🎉</div>
+            <h2>WELCOME50</h2>
+            <p>Get ₹50 OFF on your order.</p>
+            <button onclick="copyCoupon('WELCOME50')">Use Coupon</button>
+        </div>
+
+        <div class="offer-card purple">
+            <div class="offer-icon">🔥</div>
+            <h2>FOOD20</h2>
+            <p>Get 20% OFF on your food order.</p>
+            <button onclick="copyCoupon('FOOD20')">Use Coupon</button>
+        </div>
+
+        <div class="offer-card green">
+            <div class="offer-icon">💰</div>
+            <h2>SAVE100</h2>
+            <p>Save ₹100 on eligible orders.</p>
+            <button onclick="copyCoupon('SAVE100')">Use Coupon</button>
+        </div>
+
+    </div>
+
+    <div class="discount-info">
+
+        <h2>Discounts</h2>
+
+        <div class="discount-row">
+            <span>₹199+ Order</span>
+            <b>5% OFF</b>
+        </div>
+
+        <div class="discount-row">
+            <span>₹349+ Order</span>
+            <b>8% OFF</b>
+        </div>
+
+        <div class="discount-row">
+            <span>₹659+ Order</span>
+            <b>12% OFF</b>
+        </div>
+
+        <div class="discount-row">
+            <span>₹999+ Order</span>
+            <b>15% OFF</b>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BILLING ================= -->
+
+<section id="billing" class="page">
+
+    <div class="page-header">
+        <span>CHECKOUT</span>
+        <h1>Billing Details</h1>
+        <p>Complete your order details</p>
+    </div>
+
+    <div class="checkout-layout">
+
+        <div class="billing-card">
+
+            <h2>Customer Details</h2>
+
+            <label>Full Name</label>
+            <input id="customerName" type="text" placeholder="Enter your name">
+
+            <label>Mobile Number</label>
+            <input id="customerMobile" type="tel" maxlength="10"
+                   placeholder="10 digit mobile number">
+
+            <label>Delivery Address</label>
+            <textarea id="customerAddress"
+                      placeholder="House No, Street, Area, City"></textarea>
+
+            <label>Delivery Distance</label>
+
+            <select id="deliveryDistance">
+                <option value="2">1 - 3 KM</option>
+                <option value="5">3 - 6 KM</option>
+                <option value="8">6 - 10 KM</option>
+                <option value="9">10 KM above</option>
+            </select>
+
+            <label>Coupon Code</label>
+
+            <div class="coupon-input">
+                <input id="couponCode" placeholder="WELCOME50">
+                <button onclick="applyCoupon()">Apply</button>
+            </div>
+
+            <button class="primary-btn full-btn" onclick="goPayment()">
+                Continue to Payment →
+            </button>
+
+        </div>
+
+        <div class="bill-card">
+
+            <h2>Order Summary</h2>
+
+            <div id="billItems"></div>
+
+            <div class="bill-line">
+                <span>Subtotal</span>
+                <b id="billSubtotal">₹0</b>
+            </div>
+
+            <div class="bill-line">
+                <span>Discount</span>
+                <b class="green-text" id="billDiscount">-₹0</b>
+            </div>
+
+            <div class="bill-line">
+                <span>Delivery Fee</span>
+                <b id="billDelivery">₹0</b>
+            </div>
+
+            <div class="bill-line total">
+                <span>Total</span>
+                <b id="billTotal">₹0</b>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PAYMENT ================= -->
+
+<section id="payment" class="page">
+
+    <div class="page-header">
+        <span>SECURE CHECKOUT</span>
+        <h1>Choose Payment Method</h1>
+        <p>This project uses demo payment processing.</p>
+    </div>
+
+    <div class="payment-layout">
+
+        <div class="payment-card">
+
+            <div class="payment-methods">
+
+                <button class="payment-method active"
+                        onclick="selectPayment('UPI', this)">
+                    <span>📱</span>
+                    UPI
+                </button>
+
+                <button class="payment-method"
+                        onclick="selectPayment('Net Banking', this)">
+                    <span>🏦</span>
+                    Net Banking
+                </button>
+
+                <button class="payment-method"
+                        onclick="selectPayment('Card', this)">
+                    <span>💳</span>
+                    Card
+                </button>
+
+                <button class="payment-method"
+                        onclick="selectPayment('COD', this)">
+                    <span>💵</span>
+                    Cash on Delivery
+                </button>
+
+            </div>
+
+
+            <div id="upiBox" class="payment-box">
+
+                <h3>Pay using UPI</h3>
+
+                <input id="upiId"
+                       placeholder="example@upi">
+
+                <button class="primary-btn full-btn"
+                        onclick="completePayment()">
+                    Pay Now
+                </button>
+
+            </div>
+
+
+            <div id="netBankingBox" class="payment-box hidden">
+
+                <h3>Net Banking</h3>
+
+                <select id="bankName">
+                    <option value="">Select Bank</option>
+                    <option>State Bank of India</option>
+                    <option>HDFC Bank</option>
+                    <option>ICICI Bank</option>
+                    <option>Axis Bank</option>
+                    <option>Andhra Bank</option>
+                </select>
+
+                <button class="primary-btn full-btn"
+                        onclick="completePayment()">
+                    Continue
+                </button>
+
+            </div>
+
+
+            <div id="cardBox" class="payment-box hidden">
+
+                <h3>Card Details</h3>
+
+                <input id="cardNumber"
+                       maxlength="16"
+                       placeholder="Card Number">
+
+                <input id="cardName"
+                       placeholder="Name on Card">
+
+                <div class="card-row">
+                    <input id="expiry" placeholder="MM/YY">
+                    <input id="cvv" maxlength="3" placeholder="CVV">
+                </div>
+
+                <button class="primary-btn full-btn"
+                        onclick="completePayment()">
+                    Pay Now
+                </button>
+
+            </div>
+
+
+            <div id="codBox" class="payment-box hidden">
+
+                <div class="cod-message">
+                    <div>💵</div>
+                    <h3>Cash on Delivery</h3>
+                    <p>Pay when your order arrives.</p>
+                </div>
+
+                <button class="primary-btn full-btn"
+                        onclick="completePayment()">
+                    Place Order
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="payment-summary">
+
+            <h2>Amount Payable</h2>
+
+            <div class="big-total" id="paymentTotal">
+                ₹0
+            </div>
+
+            <p>Order ID will be generated after placing your order.</p>
+
+            <div class="secure-note">
+                🔒 Demo checkout<br>
+                🛡️ Your data is stored only in this browser.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUCCESS ================= -->
+
+<section id="success" class="page">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>Order Placed Successfully! 🎉</h1>
+
+        <p>Thank you for ordering from</p>
+
+        <h2>ORDER CHEYYANDI AAHA ANANDI</h2>
+
+        <div class="order-details">
+
+            <div>
+                <span>Order ID</span>
+                <b id="successOrderId">---</b>
+            </div>
+
+            <div>
+                <span>Payment</span>
+                <b id="successPayment">---</b>
+            </div>
+
+            <div>
+                <span>Total</span>
+                <b id="successAmount">₹0</b>
+            </div>
+
+        </div>
+
+        <div class="success-buttons">
+
+            <button class="primary-btn" onclick="showPage('tracking')">
+                Track Order 🚴
+            </button>
+
+            <button class="secondary-btn" onclick="showPage('menu')">
+                Continue Ordering
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TRACKING ================= -->
+
+<section id="tracking" class="page">
+
+    <div class="page-header">
+        <span>LIVE UPDATE</span>
+        <h1>Track Your Order 🚴</h1>
+        <p>Your food is on its way!</p>
+    </div>
+
+    <div class="tracking-card">
+
+        <div class="tracking-step done">
+            <div class="step-icon">✓</div>
+            <div>
+                <h3>Order Confirmed</h3>
+                <p>Your order has been confirmed.</p>
+            </div>
+        </div>
+
+        <div class="tracking-line"></div>
+
+        <div class="tracking-step done">
+            <div class="step-icon">✓</div>
+            <div>
+                <h3>Preparing Food</h3>
+                <p>Restaurant is preparing your food.</p>
+            </div>
+        </div>
+
+        <div class="tracking-line"></div>
+
+        <div class="tracking-step done">
+            <div class="step-icon">🚴</div>
+            <div>
+                <h3>Out for Delivery</h3>
+                <p>Delivery partner is on the way.</p>
+            </div>
+        </div>
+
+        <div class="tracking-line"></div>
+
+        <div class="tracking-step">
+            <div class="step-icon">🏠</div>
+            <div>
+                <h3>Delivered</h3>
+                <p>Your delicious food will arrive soon.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="page">
+
+    <div class="page-header">
+        <span>ABOUT US</span>
+        <h1>We Make Food Ordering Easy ❤️</h1>
+        <p>Simple • Fast • Delicious</p>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85">
+        </div>
+
+        <div class="about-content">
+
+            <h2>Order Cheyyandi Aaha Anandi</h2>
+
+            <p>
+                Our food ordering website makes it easy for customers
+                to discover restaurants, explore menus, apply offers,
+                place orders and track deliveries.
+            </p>
+
+            <div class="about-points">
+
+                <div>⚡ Fast Delivery</div>
+                <div>🍽️ Wide Food Selection</div>
+                <div>💰 Great Offers</div>
+                <div>🔒 Secure Demo Checkout</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="page">
+
+    <div class="page-header">
+        <span>CONTACT US</span>
+        <h1>We'd Love To Hear From You</h1>
+        <p>Have feedback? Send us a message.</p>
+    </div>
+
+    <div class="contact-layout">
+
+        <div class="contact-info">
+
+            <div class="contact-box">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h3>Phone</h3>
+                    <p>+91 9441833537</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p>support@orderchyyandiaahaanandi.com</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h3>Location</h3>
+                    <p>Kakarapadu, Koyyuru, Andhra Pradesh, India</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="contact-form">
+
+            <input id="feedbackName" placeholder="Your Name">
+
+            <input id="feedbackEmail" type="email"
+                   placeholder="Email Address">
+
+            <textarea id="feedbackMessage"
+                      placeholder="Your message"></textarea>
+
+            <button class="primary-btn full-btn"
+                    onclick="sendFeedback()">
+                Send Message
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-brand">
+        🍔 <strong>ORDER CHEYYANDI AAHA ANANDI</strong>
+    </div>
+
+    <p>
+        Delicious food delivered with love ❤️
+    </p>
+
+    <div class="social-icons">
+
+        <span>📘</span>
+        <span>📸</span>
+        <span>🐦</span>
+        <span>▶️</span>
+
+    </div>
+
+    <p class="copyright">
+        © 2026 Order Cheyyandi Aaha Anandi. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div id="loginModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-btn" onclick="closeLogin()">×</button>
+
+        <div class="modal-logo">
+            🍔
+        </div>
+
+        <h2 id="authTitle">Welcome Back!</h2>
+        <p id="authSubtitle">Login to continue ordering</p>
+
+
+        <div class="auth-tabs">
+
+            <button class="auth-tab active"
+                    onclick="showAuth('login', this)">
+                Login
+            </button>
+
+            <button class="auth-tab"
+                    onclick="showAuth('register', this)">
+                Register
+            </button>
+
+        </div>
+
+
+        <div id="loginForm">
+
+            <input id="loginEmail"
+                   type="email"
+                   placeholder="Email Address">
+
+            <input id="loginPassword"
+                   type="password"
+                   placeholder="Password">
+
+            <button class="primary-btn full-btn"
+                    onclick="loginUser()">
+                Login
+            </button>
+
+        </div>
+
+
+        <div id="registerForm" class="hidden">
+
+            <input id="registerName"
+                   placeholder="Full Name">
+
+            <input id="registerEmail"
+                   type="email"
+                   placeholder="Email Address">
+
+            <input id="registerPhone"
+                   maxlength="10"
+                   placeholder="Mobile Number">
+
+            <input id="registerPassword"
+                   type="password"
+                   placeholder="Create Password">
+
+            <button class="primary-btn full-btn"
+                    onclick="registerUser()">
+                Create Account
+            </button>
+
+        </div>
+
+        <small class="demo-note">
+            Demo website: authentication is stored locally in your browser.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RESTAURANT MODAL ================= -->
+
+<div id="restaurantModal" class="modal">
+
+    <div class="modal-box restaurant-modal">
+
+        <button class="close-btn" onclick="closeRestaurant()">×</button>
+
+        <h2 id="restaurantTitle">Restaurant</h2>
+
+        <p>Popular dishes</p>
+
+        <div id="restaurantFoods"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CART DRAWER ================= -->
+
+<div id="cartDrawer" class="cart-drawer">
+
+    <div class="cart-header">
+
+        <h2>Your Cart 🛒</h2>
+
+        <button onclick="closeCart()">×</button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-footer">
+
+        <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+
+        <button class="primary-btn full-btn"
+                onclick="goBilling()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+<div id="overlay" class="overlay" onclick="closeAllModals()"></div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+"use strict";
+
+/* ================= FOOD DATA ================= */
+
+const foods = [
+
+    {
+        id: 1,
+        name: "Chicken Biryani",
+        category: "Biryani",
+        price: 220,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 2,
+        name: "Mutton Biryani",
+        category: "Biryani",
+        price: 280,
+        rating: 4.9,
+        image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 3,
+        name: "Paneer Biryani",
+        category: "Biryani",
+        price: 190,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 4,
+        name: "Chicken Pizza",
+        category: "Pizza",
+        price: 299,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 5,
+        name: "Margherita Pizza",
+        category: "Pizza",
+        price: 249,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 6,
+        name: "Cheese Burger",
+        category: "Burgers",
+        price: 179,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 7,
+        name: "Chicken Burger",
+        category: "Burgers",
+        price: 219,
+        rating: 4.8,
+        image: "https://www.sainsburysmagazine.co.uk/uploads/media/1080x1155/01/5541-Chick-n-Sours-K-pop-burger1120.jpg?v=1-0"
+    },
+
+    {
+        id: 8,
+        name: "Chicken Noodles",
+        category: "Chinese",
+        price: 169,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 9,
+        name: "Veg Fried Rice",
+        category: "Chinese",
+        price: 149,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 10,
+        name: "Chicken Manchurian",
+        category: "Chinese",
+        price: 199,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 11,
+        name: "Chocolate Cake",
+        category: "Desserts",
+        price: 129,
+        rating: 4.8,
+        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 12,
+        name: "Chocolate Donut",
+        category: "Desserts",
+        price: 99,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 13,
+        name: "Ice Cream",
+        category: "Desserts",
+        price: 89,
+        rating: 4.5,
+        image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 14,
+        name: "Cold Coffee",
+        category: "Drinks",
+        price: 119,
+        rating: 4.7,
+        image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 15,
+        name: "Fresh Lime Soda",
+        category: "Drinks",
+        price: 79,
+        rating: 4.4,
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        id: 16,
+        name: "Mango Juice",
+        category: "Drinks",
+        price: 99,
+        rating: 4.6,
+        image: "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=600&q=80"
+    }
+
+];
+
+
+/* ================= RESTAURANTS ================= */
+
+const restaurantNames = [
+
+    "Aaha Biryani House",
+    "Spice Village",
+    "Food Junction",
+    "Royal Kitchen",
+    "Tasty Treat",
+    "Urban Food Hub",
+    "Biryani Express",
+    "Food Street",
+    "The Food Factory",
+    "Desi Zaika",
+    "Spice Garden",
+    "Hot & Spicy",
+    "Andhra Ruchulu",
+    "Grand Restaurant",
+    "Food Paradise",
+    "Hungry Hub",
+    "Delicious Point",
+    "Royal Spice",
+    "Family Restaurant",
+    "Taste Town"
+
+];
+
+const restaurantImages = [
+
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80",
+
+    "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=700&q=80",
+
+    "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=700&q=80",
+
+    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80",
+
+    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80",
+
+    "https://images.unsplash.com/photo-1579684947550-22e945225d9a?auto=format&fit=crop&w=700&q=80"
+
+];
+
+
+/* ================= GLOBAL VARIABLES ================= */
+
+let cart = loadCart();
+
+let selectedCategory = "All";
+
+let currentPayment = "UPI";
+
+let appliedCoupon = "";
+
+let lastOrder = null;
+
+
+/* ================= LOCAL STORAGE ================= */
+
+function loadCart() {
+
+    try {
+
+        const saved = localStorage.getItem("aaaCart");
+
+        return saved ? JSON.parse(saved) : [];
+
+    } catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+function saveCart() {
+
+    localStorage.setItem(
+        "aaaCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+
+        page.classList.remove("active");
+
+    });
+
+
+    const target = document.getElementById(pageId);
+
+    if (!target) return;
+
+    target.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    if (pageId === "menu") {
+
+        renderMenu();
+
+    }
+
+
+    if (pageId === "restaurants") {
+
+        renderRestaurants();
+
+    }
+
+
+    if (pageId === "billing") {
+
+        renderBilling();
+
+    }
+
+
+    if (pageId === "payment") {
+
+        updatePaymentTotal();
+
+    }
+
+}
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    document.getElementById("toastMessage").textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+/* ================= MENU ================= */
+
+function renderMenu() {
+
+    const grid = document.getElementById("menuGrid");
+
+    if (!grid) return;
+
+    const searchText =
+        document.getElementById("menuSearch")?.value
+        .trim()
+        .toLowerCase() || "";
+
+
+    let result = foods;
+
+
+    if (selectedCategory !== "All") {
+
+        result = result.filter(food =>
+            food.category === selectedCategory
+        );
+
+    }
+
+
+    if (searchText) {
+
+        result = result.filter(food =>
+            food.name.toLowerCase().includes(searchText)
+        );
+
+    }
+
+
+    if (!result.length) {
+
+        grid.innerHTML = `
+            <div class="empty-state">
+                <div>😕</div>
+                <h2>No food found</h2>
+                <p>Try another food or category.</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML = result.map(food => `
+
+        <article class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="${food.image}"
+                    alt="${food.name}"
+                    loading="lazy">
+
+                <span class="rating">
+                    ⭐ ${food.rating}
+                </span>
+
+            </div>
+
+            <div class="food-content">
+
+                <span class="food-category">
+                    ${food.category}
+                </span>
+
+                <h3>${food.name}</h3>
+
+                <div class="food-bottom">
+
+                    <strong>₹${food.price}</strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart(${food.id})">
+
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+function filterMenu(category, button) {
+
+    selectedCategory = category;
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    renderMenu();
+
+}
+
+
+function searchMenu() {
+
+    renderMenu();
+
+}
+
+
+function selectCategory(category) {
+
+    selectedCategory = category;
+
+    document.getElementById("menuSearch").value = "";
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+
+        btn.classList.toggle(
+            "active",
+            btn.textContent.trim() === category
+        );
+
+    });
+
+
+    showPage("menu");
+
+}
+
+
+/* ================= HOME SEARCH ================= */
+
+function homeSearchFood() {
+
+    const value =
+        document.getElementById("homeSearch")
+        .value
+        .trim();
+
+    if (!value) return;
+
+}
+
+
+function goToMenuSearch() {
+
+    const value =
+        document.getElementById("homeSearch")
+        .value
+        .trim();
+
+    showPage("menu");
+
+    document.getElementById("menuSearch").value = value;
+
+    selectedCategory = "All";
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+
+        btn.classList.remove("active");
+
+    });
+
+    document.querySelector(".filter-btn").classList.add("active");
+
+    renderMenu();
+
+}
+
+
+/* ================= CART ================= */
+
+function addToCart(foodId) {
+
+    const food = foods.find(item => item.id === foodId);
+
+    if (!food) {
+
+        showToast("Food not found.");
+
+        return;
+
+    }
+
+
+    const existing = cart.find(item =>
+        item.id === foodId
+    );
+
+
+    if (existing) {
+
+        existing.qty += 1;
+
+    } else {
+
+        cart.push({
+            id: foodId,
+            qty: 1
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+    showToast(`${food.name} added to cart! 🛒`);
+
+}
+
+
+function changeQuantity(foodId, change) {
+
+    const item = cart.find(item =>
+        item.id === foodId
+    );
+
+    if (!item) return;
+
+
+    item.qty += change;
+
+
+    if (item.qty <= 0) {
+
+        cart = cart.filter(item =>
+            item.id !== foodId
+        );
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+function removeFromCart(foodId) {
+
+    cart = cart.filter(item =>
+        item.id !== foodId
+    );
+
+    saveCart();
+
+    updateCart();
+
+    showToast("Item removed.");
+
+}
+
+
+function getCartSubtotal() {
+
+    return cart.reduce((total, item) => {
+
+        const food = foods.find(f =>
+            f.id === item.id
+        );
+
+        return total +
+            (food ? food.price * item.qty : 0);
+
+    }, 0);
+
+}
+
+
+function updateCart() {
+
+    const count = cart.reduce(
+        (total, item) => total + item.qty,
+        0
+    );
+
+
+    document.getElementById("cartCount")
+        .textContent = count;
+
+
+    const container =
+        document.getElementById("cartItems");
+
+    if (!container) return;
+
+
+    if (!cart.length) {
+
+        container.innerHTML = `
+            <div class="empty-cart">
+                <div>🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add some delicious food!</p>
+                <button class="primary-btn"
+                        onclick="closeCart();showPage('menu')">
+                    Browse Menu
+                </button>
+            </div>
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent = "₹0";
+
+        return;
+
+    }
+
+
+    container.innerHTML = cart.map(item => {
+
+        const food = foods.find(f =>
+            f.id === item.id
+        );
+
+        if (!food) return "";
+
+        return `
+
+            <div class="cart-item">
+
+                <img src="${food.image}" alt="${food.name}">
+
+                <div class="cart-item-info">
+
+                    <h4>${food.name}</h4>
+
+                    <strong>₹${food.price}</strong>
+
+                    <div class="qty-controls">
+
+                        <button onclick="changeQuantity(${food.id}, -1)">
+                            −
+                        </button>
+
+                        <span>${item.qty}</span>
+
+                        <button onclick="changeQuantity(${food.id}, 1)">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button class="remove-item"
+                        onclick="removeFromCart(${food.id})">
+                    ×
+                </button>
+
+            </div>
+
+        `;
+
+    }).join("");
+
+
+    document.getElementById("cartTotal")
+        .textContent =
+        `₹${getCartSubtotal()}`;
+
+}
+
+
+function openCart() {
+
+    document.getElementById("cartDrawer")
+        .classList.add("open");
+
+    document.getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeCart() {
+
+    document.getElementById("cartDrawer")
+        .classList.remove("open");
+
+    document.getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* ================= LOGIN ================= */
+
+function openLogin() {
+
+    document.getElementById("loginModal")
+        .classList.add("show");
+
+}
+
+
+function closeLogin() {
+
+    document.getElementById("loginModal")
+        .classList.remove("show");
+
+}
+
+
+function showAuth(type, button) {
+
+    document.querySelectorAll(".auth-tab")
+        .forEach(tab =>
+            tab.classList.remove("active")
+        );
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+
+    const login =
+        document.getElementById("loginForm");
+
+    const register =
+        document.getElementById("registerForm");
+
+
+    if (type === "login") {
+
+        login.classList.remove("hidden");
+
+        register.classList.add("hidden");
+
+        document.getElementById("authTitle")
+            .textContent = "Welcome Back!";
+
+        document.getElementById("authSubtitle")
+            .textContent =
+            "Login to continue ordering";
+
+    } else {
+
+        login.classList.add("hidden");
+
+        register.classList.remove("hidden");
+
+        document.getElementById("authTitle")
+            .textContent = "Create Account";
+
+        document.getElementById("authSubtitle")
+            .textContent =
+            "Register and start ordering";
+
+    }
+
+}
+
+
+function registerUser() {
+
+    const name =
+        document.getElementById("registerName")
+        .value.trim();
+
+    const email =
+        document.getElementById("registerEmail")
+        .value.trim();
+
+    const phone =
+        document.getElementById("registerPhone")
+        .value.trim();
+
+    const password =
+        document.getElementById("registerPassword")
+        .value;
+
+
+    if (!name || !email || !phone || !password) {
+
+        showToast("Please fill all fields.");
+
+        return;
+
+    }
+
+
+    if (!/^\d{10}$/.test(phone)) {
+
+        showToast("Enter a valid 10 digit mobile number.");
+
+        return;
+
+    }
+
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+
+        showToast("Enter a valid email address.");
+
+        return;
+
+    }
+
+
+    /*
+       Demo only:
+       Password is NOT stored.
+    */
+
+    localStorage.setItem(
+        "aaaUser",
+        JSON.stringify({
+            name,
+            email,
+            phone
+        })
+    );
+
+
+    updateLoginUI();
+
+    closeLogin();
+
+    showToast("Account created successfully! 🎉");
+
+}
+
+
+function loginUser() {
+
+    const email =
+        document.getElementById("loginEmail")
+        .value.trim();
+
+    const password =
+        document.getElementById("loginPassword")
+        .value;
+
+
+    if (!email || !password) {
+
+        showToast("Enter email and password.");
+
+        return;
+
+    }
+
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+
+        showToast("Enter a valid email.");
+
+        return;
+
+    }
+
+
+    const oldUser =
+        JSON.parse(
+            localStorage.getItem("aaaUser") || "null"
+        );
+
+
+    const user = oldUser || {
+
+        name: email.split("@")[0],
+
+        email: email
+
+    };
+
+
+    localStorage.setItem(
+        "aaaUser",
+        JSON.stringify(user)
+    );
+
+
+    updateLoginUI();
+
+    closeLogin();
+
+    showToast(`Welcome ${user.name}! 👋`);
+
+}
+
+
+function updateLoginUI() {
+
+    const saved =
+        localStorage.getItem("aaaUser");
+
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const userButton =
+        document.getElementById("userButton");
+
+
+    if (saved) {
+
+        try {
+
+            const user = JSON.parse(saved);
+
+            loginButton.classList.add("hidden");
+
+            userButton.classList.remove("hidden");
+
+            document.getElementById("userNameText")
+                .textContent =
+                user.name || "User";
+
+        } catch {
+
+            localStorage.removeItem("aaaUser");
+
+        }
+
+    } else {
+
+        loginButton.classList.remove("hidden");
+
+        userButton.classList.add("hidden");
+
+    }
+
+}
+
+
+function toggleUserMenu() {
+
+    const saved =
+        localStorage.getItem("aaaUser");
+
+    if (!saved) return;
+
+
+    const logout =
+        confirm(
+            "You are logged in. Do you want to logout?"
+        );
+
+
+    if (logout) {
+
+        localStorage.removeItem("aaaUser");
+
+        updateLoginUI();
+
+        showToast("Logged out successfully.");
+
+    }
+
+}
+
+
+/* ================= RESTAURANTS ================= */
+
+function renderRestaurants() {
+
+    const grid =
+        document.getElementById("restaurantGrid");
+
+    if (!grid) return;
+
+
+    grid.innerHTML =
+        restaurantNames.map((name, index) => `
+
+        <article class="restaurant-card">
+
+            <div class="restaurant-image">
+
+                <img
+                    src="${restaurantImages[index % restaurantImages.length]}"
+                    alt="${name}"
+                    loading="lazy">
+
+                <span class="restaurant-rating">
+                    ⭐ ${(4.2 + (index % 8) / 10).toFixed(1)}
+                </span>
+
+            </div>
+
+            <div class="restaurant-content">
+
+                <h3>${name}</h3>
+
+                <p>🍽️ Biryani • Pizza • Burgers</p>
+
+                <div class="restaurant-meta">
+                    <span>🚴 ${2 + (index % 7)} km</span>
+                    <span>⚡ 30-45 min</span>
+                </div>
+
+                <button class="primary-btn full-btn"
+                        onclick="openRestaurant('${name.replace(/'/g, "\\'")}')">
+                    View Menu
+                </button>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+function openRestaurant(name) {
+
+    document.getElementById("restaurantTitle")
+        .textContent = name;
+
+
+    document.getElementById("restaurantFoods")
+        .innerHTML =
+        foods.slice(0, 8).map(food => `
+
+            <div class="mini-food">
+
+                <img src="${food.image}" alt="${food.name}">
+
+                <div>
+                    <h4>${food.name}</h4>
+                    <p>⭐ ${food.rating}</p>
+                </div>
+
+                <strong>₹${food.price}</strong>
+
+                <button onclick="addToCart(${food.id})">
+                    +
+                </button>
+
+            </div>
+
+        `).join("");
+
+
+    document.getElementById("restaurantModal")
+        .classList.add("show");
+
+}
+
+
+function closeRestaurant() {
+
+    document.getElementById("restaurantModal")
+        .classList.remove("show");
+
+}
+
+
+/* ================= LOCATION ================= */
+
+function detectLocation() {
+
+    if (!navigator.geolocation) {
+
+        showToast("Location is not supported by this browser.");
+
+        return;
+
+    }
+
+
+    showToast("Detecting your location... 📍");
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+            /*
+              Demo delivery distance.
+              This does not use Google Maps.
+            */
+
+            const lat =
+                position.coords.latitude;
+
+            const lng =
+                position.coords.longitude;
+
+
+            const demoDistance =
+                1 + Math.round(
+                    (Math.abs(lat) + Math.abs(lng)) % 9
+                );
+
+
+            const input =
+                document.getElementById("locationInput");
+
+
+            input.value =
+                `Current location (${lat.toFixed(3)}, ${lng.toFixed(3)})`;
+
+
+            document.getElementById("deliveryDistance")
+                .value =
+                demoDistance <= 3
+                    ? "2"
+                    : demoDistance <= 6
+                        ? "5"
+                        : "8";
+
+
+            showToast("Location detected! 📍");
+
+        },
+
+        () => {
+
+            showToast(
+                "Location permission denied. Enter address manually."
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ================= BILLING ================= */
+
+function getAutomaticDiscount(subtotal) {
+
+    if (subtotal >= 1000) return 15;
+
+    if (subtotal >= 700) return 12;
+
+    if (subtotal >= 400) return 8;
+
+    if (subtotal >= 200) return 5;
+
+    return 0;
+
+}
+
+
+function getCouponDiscount(code, subtotal) {
+
+    const coupon =
+        code.trim().toUpperCase();
+
+
+    if (coupon === "WELCOME50") {
+
+        return Math.min(50, subtotal);
+
+    }
+
+
+    if (coupon === "FOOD20") {
+
+        return Math.min(
+            subtotal * 0.20,
+            subtotal
+        );
+
+    }
+
+
+    if (coupon === "SAVE100") {
+
+        return Math.min(100, subtotal);
+
+    }
+
+
+    return 0;
+
+}
+
+
+function getDeliveryFee(distance) {
+
+    if (distance <= 3) return 30;
+
+    if (distance <= 6) return 50;
+
+    return 80;
+
+}
+
+
+function calculateBill() {
+
+    const subtotal =
+        getCartSubtotal();
+
+
+    const autoPercent =
+        getAutomaticDiscount(subtotal);
+
+
+    const autoDiscount =
+        subtotal * autoPercent / 100;
+
+
+    const couponDiscount =
+        getCouponDiscount(
+            appliedCoupon,
+            subtotal
+        );
+
+
+    /*
+       Automatic discount and coupon
+       do not stack.
+       Bigger discount is applied.
+    */
+
+    const discount =
+        Math.max(
+            autoDiscount,
+            couponDiscount
+        );
+
+
+    const distance =
+        Number(
+            document.getElementById("deliveryDistance")
+            ?.value || 2
+        );
+
+
+    let delivery =
+        getDeliveryFee(distance);
+
+
+    const day =
+        new Date().getDay();
+
+
+    /*
+       Weekend delivery adjustment.
+    */
+
+    if (day === 6) {
+
+        delivery *= 1.15;
+
+    }
+
+    if (day === 0) {
+
+        delivery *= 1.22;
+
+    }
+
+
+    const total =
+        Math.max(
+            0,
+            subtotal - discount + delivery
+        );
+
+
+    return {
+        subtotal,
+        discount,
+        delivery,
+        total
+    };
+
+}
+
+
+function renderBilling() {
+
+    const itemsContainer =
+        document.getElementById("billItems");
+
+    if (!itemsContainer) return;
+
+
+    if (!cart.length) {
+
+        itemsContainer.innerHTML =
+            `<p>Your cart is empty.</p>`;
+
+    } else {
+
+        itemsContainer.innerHTML =
+            cart.map(item => {
+
+                const food =
+                    foods.find(f =>
+                        f.id === item.id
+                    );
+
+                if (!food) return "";
+
+                return `
+
+                    <div class="bill-item">
+
+                        <span>
+                            ${food.name} × ${item.qty}
+                        </span>
+
+                        <strong>
+                            ₹${food.price * item.qty}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    const bill =
+        calculateBill();
+
+
+    document.getElementById("billSubtotal")
+        .textContent =
+        `₹${Math.round(bill.subtotal)}`;
+
+
+    document.getElementById("billDiscount")
+        .textContent =
+        `-₹${Math.round(bill.discount)}`;
+
+
+    document.getElementById("billDelivery")
+        .textContent =
+        `₹${Math.round(bill.delivery)}`;
+
+
+    document.getElementById("billTotal")
+        .textContent =
+        `₹${Math.round(bill.total)}`;
+
+}
+
+
+function applyCoupon() {
+
+    const code =
+        document.getElementById("couponCode")
+        .value.trim()
+        .toUpperCase();
+
+
+    if (!["WELCOME50", "FOOD20", "SAVE100"].includes(code)) {
+
+        appliedCoupon = "";
+
+        showToast("Invalid coupon code ❌");
+
+        renderBilling();
+
+        return;
+
+    }
+
+
+    appliedCoupon = code;
+
+    showToast(`${code} applied successfully! 🎉`);
+
+    renderBilling();
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function goBilling() {
+
+    if (!cart.length) {
+
+        showToast("Your cart is empty.");
+
+        return;
+
+    }
+
+
+    const user =
+        localStorage.getItem("aaaUser");
+
+
+    if (!user) {
+
+        showToast("Please login before checkout.");
+
+        openLogin();
+
+        return;
+
+    }
+
+
+    closeCart();
+
+    showPage("billing");
+
+}
+
+
+function goPayment() {
+
+    if (!cart.length) {
+
+        showToast("Your cart is empty.");
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById("customerName")
+        .value.trim();
+
+    const mobile =
+        document.getElementById("customerMobile")
+        .value.trim();
+
+    const address =
+        document.getElementById("customerAddress")
+        .value.trim();
+
+
+    if (!name || !mobile || !address) {
+
+        showToast("Please complete all billing details.");
+
+        return;
+
+    }
+
+
+    if (!/^\d{10}$/.test(mobile)) {
+
+        showToast("Enter a valid 10 digit mobile number.");
+
+        return;
+
+    }
+
+
+    showPage("payment");
+
+}
+
+
+/* ================= PAYMENT ================= */
+
+function selectPayment(method, button) {
+
+    currentPayment = method;
+
+
+    document.querySelectorAll(".payment-method")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    button.classList.add("active");
+
+
+    document.querySelectorAll(".payment-box")
+        .forEach(box =>
+            box.classList.add("hidden")
+        );
+
+
+    if (method === "UPI") {
+
+        document.getElementById("upiBox")
+            .classList.remove("hidden");
+
+    }
+
+    if (method === "Net Banking") {
+
+        document.getElementById("netBankingBox")
+            .classList.remove("hidden");
+
+    }
+
+    if (method === "Card") {
+
+        document.getElementById("cardBox")
+            .classList.remove("hidden");
+
+    }
+
+    if (method === "COD") {
+
+        document.getElementById("codBox")
+            .classList.remove("hidden");
+
+    }
+
+}
+
+
+function updatePaymentTotal() {
+
+    const bill =
+        calculateBill();
+
+
+    document.getElementById("paymentTotal")
+        .textContent =
+        `₹${Math.round(bill.total)}`;
+
+}
+
+
+function completePayment() {
+
+    const bill =
+        calculateBill();
+
+
+    if (!cart.length) {
+
+        showToast("Cart is empty.");
+
+        return;
+
+    }
+
+
+    if (currentPayment === "UPI") {
+
+        const upi =
+            document.getElementById("upiId")
+            .value.trim();
+
+
+        if (!/^[\w.-]+@[\w.-]+$/.test(upi)) {
+
+            showToast("Enter a valid UPI ID.");
+
+            return;
+
+        }
+
+    }
+
+
+    if (currentPayment === "Net Banking") {
+
+        const bank =
+            document.getElementById("bankName")
+            .value;
+
+
+        if (!bank) {
+
+            showToast("Please select your bank.");
+
+            return;
+
+        }
+
+    }
+
+
+    if (currentPayment === "Card") {
+
+        const number =
+            document.getElementById("cardNumber")
+            .value.replace(/\s/g, "");
+
+        const name =
+            document.getElementById("cardName")
+            .value.trim();
+
+        const expiry =
+            document.getElementById("expiry")
+            .value.trim();
+
+        const cvv =
+            document.getElementById("cvv")
+            .value.trim();
+
+
+        if (
+            !/^\d{16}$/.test(number) ||
+            !name ||
+            !/^\d{2}\/\d{2}$/.test(expiry) ||
+            !/^\d{3}$/.test(cvv)
+        ) {
+
+            showToast("Enter valid card details.");
+
+            return;
+
+        }
+
+    }
+
+
+    const orderId =
+        "AAA" +
+        Date.now().toString().slice(-8);
+
+
+    lastOrder = {
+
+        id: orderId,
+
+        payment: currentPayment,
+
+        amount: Math.round(bill.total),
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    localStorage.setItem(
+        "aaaLastOrder",
+        JSON.stringify(lastOrder)
+    );
+
+
+    document.getElementById("successOrderId")
+        .textContent = orderId;
+
+
+    document.getElementById("successPayment")
+        .textContent = currentPayment;
+
+
+    document.getElementById("successAmount")
+        .textContent =
+        `₹${Math.round(bill.total)}`;
+
+
+    cart = [];
+
+    saveCart();
+
+    updateCart();
+
+    showPage("success");
+
+}
+
+
+/* ================= OFFERS ================= */
+
+function copyCoupon(code) {
+
+    const input =
+        document.getElementById("couponCode");
+
+
+    appliedCoupon = code;
+
+    if (input) {
+
+        input.value = code;
+
+    }
+
+
+    showToast(
+        `${code} selected. Apply it at checkout.`
+    );
+
+}
+
+
+/* ================= FEEDBACK ================= */
+
+function sendFeedback() {
+
+    const name =
+        document.getElementById("feedbackName")
+        .value.trim();
+
+    const email =
+        document.getElementById("feedbackEmail")
+        .value.trim();
+
+    const message =
+        document.getElementById("feedbackMessage")
+        .value.trim();
+
+
+    if (!name || !email || !message) {
+
+        showToast("Please fill all feedback fields.");
+
+        return;
+
+    }
+
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+
+        showToast("Enter a valid email.");
+
+        return;
+
+    }
+
+
+    document.getElementById("feedbackName").value = "";
+
+    document.getElementById("feedbackEmail").value = "";
+
+    document.getElementById("feedbackMessage").value = "";
+
+
+    showToast("Thank you for your feedback! ❤️");
+
+}
+
+
+/* ================= MODALS ================= */
+
+function closeAllModals() {
+
+    closeCart();
+
+    closeLogin();
+
+    closeRestaurant();
+
+}
+
+
+/* ================= INITIALIZATION ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    updateLoginUI();
+
+    renderRestaurants();
+
+    renderMenu();
+
+    updateCart();
+
+});
+
+</script>
+
+</body>
+</html>
